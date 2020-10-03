@@ -1,15 +1,20 @@
 package xerfio.springframework.sfgpetclinic.services.map;
 
-import xerfio.springframework.sfgpetclinic.CrudService;
 import xerfio.springframework.sfgpetclinic.model.Owner;
+import xerfio.springframework.sfgpetclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner,Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService{
 
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 
     @Override
