@@ -6,8 +6,6 @@ import xerfio.springframework.sfgpetclinic.model.Owner;
 import xerfio.springframework.sfgpetclinic.model.Vet;
 import xerfio.springframework.sfgpetclinic.services.OwnerService;
 import xerfio.springframework.sfgpetclinic.services.VetService;
-import xerfio.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import xerfio.springframework.sfgpetclinic.services.map.VetServiceMap;
 
 
 @Component
@@ -17,9 +15,10 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
 
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     /**
