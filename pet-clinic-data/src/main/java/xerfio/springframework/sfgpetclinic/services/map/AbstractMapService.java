@@ -18,9 +18,7 @@ public  abstract class AbstractMapService<T extends BaseEntity,ID extends Long> 
     }
 
     T save( T object ){
-        System.out.println("agregando object");
         if(object != null){
-            System.out.println("no es null ");
             if(object.getId() == null){
                 object.setId(getNextId());
             }
