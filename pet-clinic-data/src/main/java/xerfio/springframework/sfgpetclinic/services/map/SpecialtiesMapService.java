@@ -1,11 +1,13 @@
 package xerfio.springframework.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import xerfio.springframework.sfgpetclinic.model.Specialty;
-import xerfio.springframework.sfgpetclinic.services.SpecialtiesService;
+import xerfio.springframework.sfgpetclinic.services.SpecialtyService;
 
 import java.util.Set;
 
-public class SpecialtiesMapService  extends AbstractMapService<Specialty, Long> implements SpecialtiesService {
+@Service
+public class SpecialtiesMapService  extends AbstractMapService<Specialty, Long> implements SpecialtyService {
     @Override
     public Set<Specialty> findAll() { return super.findAll(); }
 
