@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import xerfio.springframework.sfgpetclinic.services.VetService;
 
-@RequestMapping("/vets")
 @Controller
 public class VetController {
 
@@ -16,7 +15,7 @@ public class VetController {
     }
 
 
-    @RequestMapping({"","/","/index","/index.html"})
+    @RequestMapping({"/vets","/vets/index","/index","/index.html","/vets.html"})
     public String listVets(Model model){
 
         model.addAttribute("vets", vetService.findAll());
