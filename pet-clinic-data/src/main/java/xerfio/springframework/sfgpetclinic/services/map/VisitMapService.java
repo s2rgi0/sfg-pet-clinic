@@ -1,10 +1,12 @@
 package xerfio.springframework.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import xerfio.springframework.sfgpetclinic.model.Visit;
 import xerfio.springframework.sfgpetclinic.services.VisitService;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit,Long> implements VisitService {
 
     @Override
