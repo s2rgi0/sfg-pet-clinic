@@ -109,7 +109,7 @@
                         <groupId>org.mockito</groupId>
                         <artifactId>mockito-junit-jupiter</artifactId>
                         <version>2.22.0</version>
-                        <scope>test</scope>
+                        <scope>compile</scope>
                     </dependency>
                 </dependencies>
             </plugin>
