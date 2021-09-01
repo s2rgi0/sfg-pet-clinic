@@ -8,6 +8,7 @@ import xerfio.springframework.sfgpetclinic.services.OwnerService;
 import xerfio.springframework.sfgpetclinic.services.PetService;
 import xerfio.springframework.sfgpetclinic.services.PetTypeService;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -33,6 +34,8 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
                 .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
                 .findFirst().orElse(null);
     }
+
+
 
     @Override
     public Owner findById(Long id) {
@@ -69,5 +72,10 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     @Override
     public void deleteById(Long id) {
         super.deleteById(id );
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        return null;
     }
 }
