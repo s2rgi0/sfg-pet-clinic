@@ -41,7 +41,7 @@ public class OwnerController {
         return mav;
     }
 
-    @PostMapping
+    @GetMapping
     @RequestMapping("")
     public String processFindForm(@ModelAttribute("owner") Owner owner, @RequestParam("lastName") String lastName, BindingResult result, Model model){
 
