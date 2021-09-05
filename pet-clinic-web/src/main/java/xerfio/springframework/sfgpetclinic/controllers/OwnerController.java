@@ -4,10 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import xerfio.springframework.sfgpetclinic.model.Owner;
 import xerfio.springframework.sfgpetclinic.services.OwnerService;
@@ -19,6 +16,7 @@ import java.util.List;
 public class OwnerController {
 
     private final OwnerService ownerService;
+    private Owner owner;
 
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
@@ -43,16 +41,20 @@ public class OwnerController {
         return mav;
     }
 
-    @GetMapping
-    public String processFindForm(Owner owner, BindingResult result, Model model){
-        // allow parameterless GET request for /owners to return all records
+    @PostMapping
+    @RequestMapping("")
+    public String processFindForm(@ModelAttribute("owner") Owner owner, @RequestParam("lastName") String lastName, BindingResult result, Model model){
+
+        System.out.println("RequestParam :::::: "+lastName);
+        System.out.println("owner.toString "+owner.toString());
+        System.out.println("owner.getLastName ::::: "+owner.getLastName()+"       ::::::::::::");
         if (owner.getLastName() == null) {
             owner.setLastName(""); // empty string signifies broadest possible search
         }
-
+        System.out.println("last Name ::::::: "+owner.getLastName()+":::::: MOdel :::::::"+model.toString());
         // find owners by last name
-        List<Owner> results = ownerService.findAllByLastNameLike("%"+ owner.getLastName() + "%");
-
+        List<Owner> results = ownerService.findAllByLastNameLike("%"+lastName+"%");
+        System.out.println("results size "+results.size());
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");
