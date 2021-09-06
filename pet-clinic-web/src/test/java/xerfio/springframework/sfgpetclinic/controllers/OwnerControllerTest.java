@@ -70,7 +70,8 @@ class OwnerControllerTest {
     void processFindFormReturnOne() throws Exception {
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1l).build()));
 
-        mockMvc.perform(get("/owners"))
+        mockMvc.perform(get("/owners")
+                .param("lastName",""))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"));
     }

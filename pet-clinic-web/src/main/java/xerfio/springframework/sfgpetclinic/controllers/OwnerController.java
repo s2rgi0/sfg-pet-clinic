@@ -42,7 +42,6 @@ public class OwnerController {
     }
 
     @GetMapping
-    @RequestMapping("")
     public String processFindForm(@ModelAttribute("owner") Owner owner, @RequestParam("lastName") String lastName, BindingResult result, Model model){
 
         System.out.println("RequestParam :::::: "+lastName);
