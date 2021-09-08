@@ -20,7 +20,6 @@ public class OwnerController {
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
     private final OwnerService ownerService;
-    private Owner owner;
 
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
@@ -28,13 +27,14 @@ public class OwnerController {
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder){
-        dataBinder.setAllowedFields("id");
+        dataBinder.setDisallowedFields("id");
     }
 
 
     @RequestMapping("/find")
-    public String findOwners(Model model){
-        model.addAttribute("owner", Owner.builder().build());
+    public String findOwners(Map<String, Object> model){
+        model.put("owner", new Owner());
+        //model.addAttribute("owner", Owner.builder().build());
         return "owners/findOwners";
     }
 
@@ -46,9 +46,9 @@ public class OwnerController {
     }
 
     @GetMapping
-    public String processFindForm(Owner owner, @RequestParam("lastName") String lastName, BindingResult result, Model model){
+    public String processFindForm( Owner owner, BindingResult result, Model model){
 
-        System.out.println("RequestParam :::::: "+lastName);
+        //System.out.println("RequestParam :::::: "+lastName);
         System.out.println("owner.toString "+owner.toString());
         System.out.println("owner.getLastName ::::: "+owner.getLastName()+"       ::::::::::::");
         if (owner.getLastName() == null) {
@@ -56,7 +56,7 @@ public class OwnerController {
         }
         System.out.println("last Name ::::::: "+owner.getLastName()+":::::: MOdel :::::::"+model.toString());
         // find owners by last name
-        List<Owner> results = ownerService.findAllByLastNameLike("%"+lastName+"%");
+        List<Owner> results = ownerService.findAllByLastNameLike("%"+owner.getLastName()+"%");
         System.out.println("results size "+results.size());
         if (results.isEmpty()) {
             // no owners found
@@ -97,20 +97,20 @@ public class OwnerController {
         }else{
             Owner savedOwner = ownerService.save(owner);
             return "redirect:/owners/"+savedOwner.getId();
-        }
+}
     }
 
     @PostMapping("/{ownerId}/edit")
     public String processUpdateForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") Long ownerId){
 
         if(result.hasErrors()){
-            return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         }else{
-            owner.setId(ownerId);
-            Owner savedOwner = ownerService.save(owner);
-            return "redirect:/owners/"+savedOwner.getId();
+        owner.setId(ownerId);
+        Owner savedOwner = ownerService.save(owner);
+        return "redirect:/owners/"+savedOwner.getId();
         }
-    }
+        }
 
 
 

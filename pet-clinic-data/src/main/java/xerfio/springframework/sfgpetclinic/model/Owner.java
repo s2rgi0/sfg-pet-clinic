@@ -1,17 +1,12 @@
 package xerfio.springframework.sfgpetclinic.model;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
@@ -38,6 +33,49 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
+    public Owner(Long id, String firstName, String lastName, String address) {
+        super(id, firstName, lastName);
+        this.address = address;
+    }
+
+    public Owner(Long id, String firstName, String lastName) {
+        super(id, firstName, lastName);
+    }
+
+    public Owner() {
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public Set<Pet> getPets() {
+        return pets;
+    }
 
     @Override
     public String toString() {
