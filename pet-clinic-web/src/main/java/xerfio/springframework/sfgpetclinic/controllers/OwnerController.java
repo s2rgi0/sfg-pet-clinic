@@ -97,14 +97,14 @@ public class OwnerController {
         }else{
             Owner savedOwner = ownerService.save(owner);
             return "redirect:/owners/"+savedOwner.getId();
-}
+        }
     }
 
     @PostMapping("/{ownerId}/edit")
     public String processUpdateForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") Long ownerId){
 
         if(result.hasErrors()){
-        return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+            return  VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         }else{
         owner.setId(ownerId);
         Owner savedOwner = ownerService.save(owner);
