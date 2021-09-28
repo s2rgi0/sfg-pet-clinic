@@ -49,15 +49,15 @@ public class OwnerController {
     public String processFindForm( Owner owner, BindingResult result, Model model){
 
         //System.out.println("RequestParam :::::: "+lastName);
-        System.out.println("owner.toString "+owner.toString());
-        System.out.println("owner.getLastName ::::: "+owner.getLastName()+"       ::::::::::::");
+        //System.out.println("owner.toString "+owner.toString());
+        //System.out.println("owner.getLastName ::::: "+owner.getLastName()+"       ::::::::::::");
         if (owner.getLastName() == null) {
             owner.setLastName(""); // empty string signifies broadest possible search
         }
-        System.out.println("last Name ::::::: "+owner.getLastName()+":::::: MOdel :::::::"+model.toString());
+        //System.out.println("last Name ::::::: "+owner.getLastName()+":::::: MOdel :::::::"+model.toString());
         // find owners by last name
         List<Owner> results = ownerService.findAllByLastNameLike("%"+owner.getLastName()+"%");
-        System.out.println("results size "+results.size());
+        //System.out.println("results size "+results.size());
         if (results.isEmpty()) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");

@@ -2,8 +2,10 @@ package xerfio.springframework.sfgpetclinic.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import xerfio.springframework.sfgpetclinic.model.Owner;
@@ -23,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@ExtendWith(MockitoExtension.class)
 class PetControllerTest {
 
     @Mock
@@ -46,7 +49,7 @@ class PetControllerTest {
     @BeforeEach
     void setUp() {
         owner = Owner.builder().id(1l).build();
-
+        petController = new PetController(petService,ownerService,petTypeService);
         petTypes = new HashSet<>();
         petTypes.add(PetType.builder().id(1L).name("Dog").build());
         petTypes.add(PetType.builder().id(2L).name("Cat").build());
