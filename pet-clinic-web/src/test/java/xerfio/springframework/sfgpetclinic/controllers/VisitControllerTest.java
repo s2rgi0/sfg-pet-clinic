@@ -7,22 +7,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.util.UriTemplate;
-import xerfio.springframework.sfgpetclinic.model.Owner;
-import xerfio.springframework.sfgpetclinic.model.Pet;
-import xerfio.springframework.sfgpetclinic.model.PetType;
 import xerfio.springframework.sfgpetclinic.services.PetService;
 import xerfio.springframework.sfgpetclinic.services.VisitService;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -49,7 +40,7 @@ class VisitControllerTest {
     @BeforeEach
     void setUp() {
 
-        Long petId = 1L;
+        /*Long petId = 1L;
         Long ownerId = 1L;
         when(petService.findById(anyLong()))
                 .thenReturn(
@@ -74,7 +65,7 @@ class VisitControllerTest {
         visitsUri = visitsUriTemplate.expand(uriVariables);
 
 
-        mockMvc = MockMvcBuilders.standaloneSetup(visitController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(visitController).build();*/
     }
 
     @Test
