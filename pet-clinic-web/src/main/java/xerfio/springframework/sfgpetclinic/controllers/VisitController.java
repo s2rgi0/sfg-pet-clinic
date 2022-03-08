@@ -3,10 +3,7 @@ package xerfio.springframework.sfgpetclinic.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import xerfio.springframework.sfgpetclinic.model.Pet;
 import xerfio.springframework.sfgpetclinic.model.Visit;
 import xerfio.springframework.sfgpetclinic.services.PetService;
@@ -28,13 +25,13 @@ public class VisitController {
         this.petService = petService;
     }
 
-
+    @InitBinder
     public void dataBinder(WebDataBinder dataBinder){
         dataBinder.setDisallowedFields("id");
 
         dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport(){
-
-            public void setText( String text) throws IllegalArgumentException{
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException{
                 setValue(LocalDate.parse(text));
             }
         });

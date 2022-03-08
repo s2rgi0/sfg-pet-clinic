@@ -137,7 +137,9 @@ class OwnerControllerTest {
                 .param("lastName",""))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownersList"))
-                .andExpect(model().attribute("selections", hasSize(2)));;
+                .andExpect(model().attribute("selections", hasSize(2)));
     }
+
+
 
 }
